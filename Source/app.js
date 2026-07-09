@@ -53,6 +53,7 @@ const bowlImage = document.querySelector("#bowlImage");
 const bowlToppingImages = document.querySelectorAll("[data-bowl-topping]");
 const likeEffect = document.querySelector("#likeEffect");
 const dontLikeEffect = document.querySelector("#dontLikeEffect");
+const dropEffect = document.querySelector("#dropEffect");
 const finishEffect = document.querySelector("#finishEffect");
 const bgMusic = document.querySelector("#bgMusic");
 const bgmTracks = [
@@ -63,6 +64,7 @@ const soundEffects = {
   start: new Audio("Assets/SE/%E9%96%8B%E5%A7%8B.mp3"),
   choose: new Audio("Assets/SE/%E9%81%B8%E6%96%99.mp3"),
   serve: new Audio("Assets/SE/%E9%80%81%E5%87%BA.mp3"),
+  error: new Audio("Assets/SE/%E9%8C%AF%E8%AA%A4.mp3"),
   clear: new Audio("Assets/SE/%E6%B8%85%E7%A9%BA.mp3"),
   end: new Audio("Assets/SE/kabuki_yell.mp3")
 };
@@ -291,6 +293,18 @@ function playReaction(effectEl) {
   effectEl.classList.add("is-playing");
 }
 
+function stopDropEffect() {
+  if (!dropEffect) return;
+  dropEffect.classList.remove("is-playing");
+}
+
+function playDropEffect() {
+  if (!dropEffect) return;
+  stopDropEffect();
+  void dropEffect.offsetWidth;
+  dropEffect.classList.add("is-playing");
+}
+
 function stopFinishEffect() {
   if (finishEffectTimer) {
     clearTimeout(finishEffectTimer);
@@ -354,14 +368,13 @@ function isMatch() {
 }
 
 function serve() {
-  playSound("serve");
-
   if (!state.running) {
     showMessage("先按開始。", "bad");
     return;
   }
 
   if (isMatch()) {
+    playSound("serve");
     const servedBroth = state.order.broth;
     state.combo += 1;
     state.score += 100 + Math.min(state.combo * 15, 150);
@@ -370,9 +383,11 @@ function serve() {
     showMessage(`正確出餐！${describeOrder(state.order)}`, "good");
     nextOrder();
   } else {
+    playSound("error");
     state.combo = 0;
     state.time = Math.max(0, state.time - 5);
     playReaction(dontLikeEffect);
+    playDropEffect();
     showMessage(`客人說不是這碗：要 ${describeOrder(state.order)}`, "bad");
     clearBowl();
     updateStats();
@@ -382,6 +397,7 @@ function serve() {
 
 function startGame() {
   stopFinishEffect();
+  stopDropEffect();
   playSound("start");
   playBackgroundMusic();
 
@@ -411,6 +427,7 @@ function startGame() {
 
 function endGame() {
   playSound("end");
+  stopDropEffect();
   playFinishEffect();
   state.running = false;
   clearInterval(state.timerId);
@@ -439,6 +456,7 @@ document.querySelectorAll("[data-topping]").forEach((button) => {
 serveBtn.addEventListener("click", serve);
 clearBtn.addEventListener("click", () => {
   stopFinishEffect();
+  stopDropEffect();
   playSound("clear");
   clearBowl();
   showMessage("碗已清空。");
