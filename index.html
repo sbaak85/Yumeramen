@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>郎拉麵小遊戲</title>
+  <title>巫拉麵</title>
   <link rel="stylesheet" href="Assets/styles.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <section class="counter">
       <header class="topbar" aria-label="遊戲狀態">
         <div>
-          <h1>郎拉麵小遊戲</h1>
+          <h1>巫拉麵</h1>
           <p class="subtitle">照訂單煮麵，上錯會扣時間。</p>
         </div>
         <div class="stats">
@@ -22,6 +22,8 @@
       </header>
 
       <section class="service-line" aria-label="拉麵店櫃台">
+        <img id="finishEffect" class="finish-effect" src="Assets/完食.png" alt="" aria-hidden="true">
+
         <div class="success-log" id="successLog" aria-label="成功出餐紀錄">
           <div class="success-log-track" id="successLogTrack"></div>
         </div>
