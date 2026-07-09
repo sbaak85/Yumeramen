@@ -17,54 +17,81 @@
         <div class="stats">
           <div><span>分數</span><strong id="score">0</strong></div>
           <div><span>連擊</span><strong id="combo">0</strong></div>
-          <div><span>時間</span><strong id="time">75</strong></div>
+          <div><span>時間</span><strong id="time">60</strong></div>
         </div>
       </header>
 
       <section class="service-line" aria-label="拉麵店櫃台">
+        <div class="success-log" id="successLog" aria-label="成功出餐紀錄">
+          <div class="success-log-track" id="successLogTrack"></div>
+        </div>
+
         <div class="customer-panel">
           <div class="customer" id="customer">
-            <div class="ears"></div>
-            <div class="face">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="mouth"></span>
+            <img class="customer-art" src="Assets/yume.png" alt="遊戲角色">
+            <img id="dontLikeEffect" class="reaction-pop dont-like-pop" src="Assets/DontLike-effect.png" alt="" aria-hidden="true">
+          </div>
+          <div class="speech-stack">
+            <div class="speech">
+              <span class="label">客人點單</span>
+              <h2 id="orderTitle">準備中</h2>
+              <p id="orderText">按「開始」接第一張單。</p>
             </div>
           </div>
-          <div class="speech">
-            <span class="label">客人點單</span>
-            <h2 id="orderTitle">準備中</h2>
-            <p id="orderText">按「開始」接第一張單。</p>
-          </div>
         </div>
+
+        <img class="chopsticks-holder" src="Assets/Chopsticks-display.png" alt="筷子筒">
 
         <div class="bowl-area">
           <div class="steam"><span></span><span></span><span></span></div>
           <div class="bowl" aria-label="目前拉麵">
-            <div class="broth" id="brothView"></div>
-            <div class="noodles"></div>
-            <div class="topping egg" data-name="egg"></div>
-            <div class="topping pork" data-name="pork"></div>
-            <div class="topping corn" data-name="corn"></div>
-            <div class="topping nori" data-name="nori"></div>
+            <img id="bowlImage" class="bowl-image" src="Assets/Miso-bowl.png" alt="拉麵湯頭">
+            <div class="bowl-toppings" aria-hidden="true">
+              <img class="bowl-topping bowl-topping-nori" data-bowl-topping="nori" src="Assets/nori-card.png" alt="">
+              <img class="bowl-topping bowl-topping-pork" data-bowl-topping="pork" src="Assets/chashu-card.png" alt="">
+              <img class="bowl-topping bowl-topping-corn" data-bowl-topping="corn" src="Assets/corn-card.png" alt="">
+              <img class="bowl-topping bowl-topping-egg" data-bowl-topping="egg" src="Assets/soft-boiled-egg-card.png" alt="">
+            </div>
+            <img id="likeEffect" class="reaction-pop like-pop" src="Assets/Like-effect.png" alt="" aria-hidden="true">
           </div>
           <div class="current-order" id="currentOrder">空碗</div>
         </div>
       </section>
 
       <section class="controls" aria-label="料理操作">
-        <div class="station">
+        <div class="station broth-station">
           <h3>湯底</h3>
-          <button class="choice" data-broth="miso"><b>1</b>味噌</button>
-          <button class="choice" data-broth="shoyu"><b>2</b>醬油</button>
-          <button class="choice" data-broth="tonkotsu"><b>3</b>豚骨</button>
+          <button class="choice broth-choice" data-broth="miso">
+            <img class="broth-icon" src="Assets/Miso.png" alt="">
+            <span class="choice-label"><b>1</b>味噌</span>
+          </button>
+          <button class="choice broth-choice" data-broth="shoyu">
+            <img class="broth-icon" src="Assets/soy%20sauce.png" alt="">
+            <span class="choice-label"><b>2</b>醬油</span>
+          </button>
+          <button class="choice broth-choice" data-broth="tonkotsu">
+            <img class="broth-icon" src="Assets/pork%20bone.png" alt="">
+            <span class="choice-label"><b>3</b>豚骨</span>
+          </button>
         </div>
-        <div class="station">
+        <div class="station topping-station">
           <h3>配料</h3>
-          <button class="choice" data-topping="egg"><b>Q</b>溏心蛋</button>
-          <button class="choice" data-topping="pork"><b>W</b>叉燒</button>
-          <button class="choice" data-topping="corn"><b>E</b>玉米</button>
-          <button class="choice" data-topping="nori"><b>A</b>海苔</button>
+          <button class="choice topping-choice" data-topping="egg">
+            <img class="topping-icon" src="Assets/soft-boiled-egg-card.png" alt="">
+            <span class="choice-label"><b>Q</b>溏心蛋</span>
+          </button>
+          <button class="choice topping-choice" data-topping="pork">
+            <img class="topping-icon" src="Assets/chashu-card.png" alt="">
+            <span class="choice-label"><b>W</b>叉燒</span>
+          </button>
+          <button class="choice topping-choice" data-topping="corn">
+            <img class="topping-icon" src="Assets/corn-card.png" alt="">
+            <span class="choice-label"><b>E</b>玉米</span>
+          </button>
+          <button class="choice topping-choice" data-topping="nori">
+            <img class="topping-icon" src="Assets/nori-card.png" alt="">
+            <span class="choice-label"><b>A</b>海苔</span>
+          </button>
         </div>
         <div class="station actions">
           <h3>出餐</h3>
@@ -77,6 +104,7 @@
       <footer class="message" id="message">選好湯底與配料後送出。</footer>
     </section>
   </main>
+  <audio id="bgMusic" src="Assets/SE/Ramen%20shop%20music1.mp3" preload="auto" loop></audio>
   <script src="Source/app.js"></script>
 </body>
 </html>
