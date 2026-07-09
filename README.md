@@ -2,6 +2,24 @@
 
 本機網頁小遊戲。照客人的訂單選湯底、加配料、送出拉麵，在時間內累積分數。
 
+## 專案結構
+
+```text
+├── Assets
+│   └── styles.css
+├── Source
+│   ├── app.js
+│   ├── Start-Game.cmd
+│   └── Start-Game.ps1
+├── Docs
+│   └── USAGE.md
+├── Design
+│   └── STYLE.md
+├── index.html
+├── README.md
+└── .gitignore
+```
+
 ## 開啟方式
 
 最簡單：
@@ -10,17 +28,10 @@
 
 或使用本機網址：
 
-1. 執行 `Start-Game.cmd`
+1. 執行 `Source\Start-Game.cmd`
 2. 打開 `http://127.0.0.1:8794/`
 
-## 操作
+## 更多文件
 
-- `1` 味噌
-- `2` 醬油
-- `3` 豚骨
-- `Q` 溏心蛋
-- `W` 叉燒
-- `E` 玉米
-- `A` 海苔
-- `Space` 送出
-- `R` 重新開始
+- [操作說明](Docs/USAGE.md)
+- [視覺設計](Design/STYLE.md)
