@@ -479,7 +479,7 @@ h1 {
   font-size: 16px;
 }
 
-.choice, .serve, .secondary, .start {
+.choice, .serve, .secondary, .start, .bgm-button {
   min-height: 48px;
   border: 3px solid var(--ink);
   border-radius: 7px;
@@ -530,7 +530,7 @@ h1 {
   white-space: nowrap;
 }
 
-.choice:hover, .serve:hover, .secondary:hover, .start:hover {
+.choice:hover, .serve:hover, .secondary:hover, .start:hover, .bgm-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 0 rgba(42, 33, 27, .2);
 }
@@ -552,7 +552,30 @@ button b {
 }
 
 .actions {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto auto auto 1fr auto;
+  align-content: stretch;
+}
+
+.actions h3,
+.actions .serve,
+.actions .secondary,
+.actions .start {
+  grid-column: 1 / -1;
+}
+
+.bgm-controls {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-self: end;
+}
+
+.bgm-button {
+  min-height: 48px;
+  font-size: 18px;
+  background: #fff;
 }
 
 .serve {
