@@ -172,7 +172,14 @@ h1 {
 
 .customer-panel, .bowl-area {
   position: relative;
+}
+
+.customer-panel {
   z-index: 3;
+}
+
+.bowl-area {
+  z-index: 9;
 }
 
 .customer-panel {
@@ -195,7 +202,7 @@ h1 {
   left: 178px;
   top: 56px;
   align-self: center;
-  z-index: 4;
+  z-index: 1;
   transform: none;
 }
 
@@ -634,7 +641,7 @@ h1 {
   position: absolute;
   left: 48%;
   top: 48%;
-  z-index: 2;
+  z-index: 6;
   width: 120px;
   height: auto;
   transform: rotate(0deg);
@@ -1026,6 +1033,63 @@ button b {
 
   .controls {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1180px) and (orientation: portrait) {
+  html.android-device:not(.fixed-board-mode) .bowl-area {
+    min-height: clamp(238px, 32vw, 310px);
+    margin-top: -6px;
+  }
+
+  html.android-device:not(.fixed-board-mode) .steam {
+    gap: 30px;
+    height: 72px;
+    margin-bottom: -18px;
+    transform: translateY(54px);
+  }
+
+  html.android-device:not(.fixed-board-mode) .steam span {
+    width: 18px;
+    height: 78px;
+    border-left-width: 8px;
+  }
+
+  html.android-device:not(.fixed-board-mode) .steam span:nth-child(2) {
+    height: 98px;
+  }
+
+  html.android-device:not(.fixed-board-mode) .bowl {
+    width: min(380px, 82vw);
+    transform: translateY(34px);
+  }
+
+  html.android-device:not(.fixed-board-mode) .bowl-topping-nori {
+    width: 27%;
+    left: 55%;
+    top: 24%;
+  }
+
+  html.android-device:not(.fixed-board-mode) .bowl-topping-pork {
+    width: 24%;
+    left: 46%;
+    top: 29%;
+  }
+
+  html.android-device:not(.fixed-board-mode) .bowl-topping-corn {
+    width: 23%;
+    left: 41%;
+    top: 33%;
+  }
+
+  html.android-device:not(.fixed-board-mode) .bowl-topping-egg {
+    width: 22%;
+    left: 32%;
+    top: 31%;
+  }
+
+  html.android-device:not(.fixed-board-mode) .current-order {
+    margin-top: 12px;
   }
 }
 

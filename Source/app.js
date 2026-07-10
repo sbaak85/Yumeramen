@@ -137,9 +137,14 @@ const fixedBoardFallbackHeight = 1040;
 const landscapeLayoutQuery = window.matchMedia("(orientation: landscape) and (max-height: 560px)");
 const userAgent = navigator.userAgent || "";
 const isIpadLike = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+const isAndroidDevice = /Android/i.test(userAgent);
 const isIosDevice = /iP(hone|ad|od)/.test(userAgent) || isIpadLike;
 const isSafari = /Safari/i.test(userAgent) && !/(Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android)/i.test(userAgent);
 const fixedBoardMode = isIosDevice || isSafari;
+
+if (isAndroidDevice) {
+  document.documentElement.classList.add("android-device");
+}
 
 if (fixedBoardMode) {
   document.documentElement.classList.add("fixed-board-mode");
