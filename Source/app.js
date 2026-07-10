@@ -186,24 +186,23 @@ function playSound(name) {
 function updateLandscapeScale() {
   if (!landscapeLayoutQuery.matches) {
     document.documentElement.style.removeProperty("--landscape-scale");
-    document.documentElement.style.removeProperty("--landscape-center-x");
-    document.documentElement.style.removeProperty("--landscape-center-y");
+    document.documentElement.style.removeProperty("--landscape-board-width");
+    document.documentElement.style.removeProperty("--landscape-board-height");
+    document.documentElement.style.removeProperty("--landscape-stage-height");
     return;
   }
 
-  const viewport = window.visualViewport;
-  const width = viewport ? viewport.width : window.innerWidth;
-  const height = viewport ? viewport.height : window.innerHeight;
-  const offsetLeft = viewport ? viewport.offsetLeft : 0;
-  const offsetTop = viewport ? viewport.offsetTop : 0;
-  const scale = Math.min(
-    (width - 8) / 1120,
-    (height - 8) / 720,
-    1
-  );
+  const width = window.innerWidth || document.documentElement.clientWidth || 1120;
+  const height = window.innerHeight || document.documentElement.clientHeight || 720;
+  const scale = Math.min((width - 8) / 1120, 1);
+  const boardWidth = Math.ceil(1120 * scale);
+  const boardHeight = Math.ceil(744 * scale);
+  const stageHeight = Math.max(height, boardHeight);
+
   document.documentElement.style.setProperty("--landscape-scale", scale.toFixed(4));
-  document.documentElement.style.setProperty("--landscape-center-x", `${offsetLeft + width / 2}px`);
-  document.documentElement.style.setProperty("--landscape-center-y", `${offsetTop + height / 2}px`);
+  document.documentElement.style.setProperty("--landscape-board-width", `${boardWidth}px`);
+  document.documentElement.style.setProperty("--landscape-board-height", `${boardHeight}px`);
+  document.documentElement.style.setProperty("--landscape-stage-height", `${stageHeight}px`);
 }
 
 function makeOrder() {
